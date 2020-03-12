@@ -36,6 +36,17 @@ def api_accounts_search(search):
     account_list = list(accounts_collection.find(query))
     return current_app.response_class(dumps(account_list), mimetype="application/json")
 
+@app.route('/api/accounts_tap_query/<search>',methods=['GET'])
+def api_accounts_tap_search(search):
+    query = {
+    "taps": {
+    "$regex": search,
+    "$options" :'i' # case-insensitive
+    }
+    }
+    account_list = list(accounts_collection.find(query))
+    return current_app.response_class(dumps(account_list), mimetype="application/json")
+
 @app.route('/api/taps/<search>',methods=['GET'])
 def api_taps(search):
     query = {
