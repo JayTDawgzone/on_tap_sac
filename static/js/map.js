@@ -4,12 +4,36 @@ let mapController = (function() {
   function createTapList(taplist) {
     // Creates Tap List String for Pop Ups
     let string = ''
-    for (let i=0; i<taplist.length; i++) {
-      string = string + `<li>${taplist[i]}</li>`
+    if(taplist[0].constructor == Object) {
+      for (const property in taplist) {
+        string = string + `<li>${Object.values(taplist[property])}</li>`
+        console.log(Object.values(taplist[property]))
+      }
+    }else {
+      for (let i=0; i<taplist.length; i++) {
+
+        string = string + `<li>${taplist[i]}</li>`
+      }
     }
+
     return string
   }
 
+  function displayRadioValue() {
+    var ele = document.getElementsByName('options');
+    let checked;
+    for(let x = 0; x < ele.length; x++) {
+        if(ele[x].checked) {
+          if (x === 0) {
+            checked ='brands'
+          } else {
+            checked = 'locations'
+          }
+        }
+
+    }
+    return checked
+  }
 
   return {
     createMap: function (layerGroup) {
@@ -33,25 +57,63 @@ let mapController = (function() {
 
       let searchbar = d3.select('#searchbar')
       let lcontrol = L.control.layers(baseMaps,overlayMaps).addTo(mymap)
+      // let option1 = document.getElementbyID('option1')
+      // let option2 = document.getElementbyID('option2')
       let layer;
       d3.select('#searchbtn').on('click', function(d) {
-        let search = searchbar.property('value')
-        d3.json(`http://127.0.0.1:5000/api/taps/${search}`).then(function(result,error) {
-          console.log(search)
-          mymap.removeLayer(layerGroup)
-          mymap.eachLayer(d => {
-            mymap.removeLayer(d)
+        let search = searchbar.property('value');
+        let option = displayRadioValue();
+        let layer;
+        if (option === 'brands') {
+          d3.json(`http://127.0.0.1:5000/api/taps/${search}`).then(function(result,error) {
+            mymap.removeLayer(layerGroup)
+            mymap.eachLayer(d => {
+              mymap.removeLayer(d)
+            })
+            layer = mapController.createMarkers(result);
+            mymap.addLayer(baseMap);
+            mymap.addLayer(layer);
           })
-          var layer = mapController.createMarkers(result)
-          mymap.addLayer(baseMap)
-          mymap.addLayer(layer)
-        })
+        } else {
+          // search for accounts
+          d3.json(`http://127.0.0.1:5000/api/accounts_query/${search}`).then(function(result,error) {
+            mymap.removeLayer(layerGroup)
+            mymap.eachLayer(d => {
+              mymap.removeLayer(d);
+            })
+            layer = mapController.createAccountMarkers(result);
+            mymap.addLayer(baseMap);
+            mymap.addLayer(layer);
+          })
+        }
+
 
 
       })
 // leaflet-pane leaflet-shadow-pane
 // leaflet-pane leaflet-marker-pane
 // leaflet-pane leaflet-tooltip-pane
+    },
+    createAccountMarkers: function (result) {
+      let markers = [];
+      let obj;
+      result.map(function(d) {
+        obj = {
+          location: d.location,
+          coordinates: [d.lat, d.lng],
+          taps: d.taps
+        }
+        markers.push(obj);
+      })
+      let layerGroup = [];
+      let layer;
+      for (var i = 0; i < markers.length; i++) {
+          var marker = markers[i];
+          layer = L.marker(marker.coordinates).bindPopup(`<p> ${marker.location} </p><p>Brands:</p> ${createTapList(marker.taps)}`);
+          layerGroup.push(layer);
+        };
+        var markerGroup = L.layerGroup(layerGroup);
+        return markerGroup
     },
     createMarkers: function (result) {
       // Create Markers for the map
@@ -61,7 +123,6 @@ let mapController = (function() {
       result.map(function(d) {
 
             for (var z=0; z<d.locations.length; z++) {
-              console.log(d.locations[z].location)
               obj = {
                 coordinates: [d.locations[z].lat, d.locations[z].lng],
                 name: d.locations[z].location,
@@ -70,7 +131,6 @@ let mapController = (function() {
               markers.push(obj)
             }
       });
-      console.log(markers)
       // Push all taps associated with account to Markers List
       let location;
       result.map(function(d) {
@@ -109,7 +169,7 @@ let controller = (function(mapCtrl) {
     let data = d3.json(`http://127.0.0.1:5000/api/taps/${query}`).then(function(result,error) {
       let layer = mapCtrl.createMarkers(result)
       mapCtrl.createMap(layer)
-
+      d3.select('#search').text(query)
 
 
 

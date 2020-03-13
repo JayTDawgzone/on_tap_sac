@@ -512,7 +512,7 @@ ul.sidebar-menu li.active a i {
 
 #main-content {
 
-    margin-left: 180px;
+    margin-left: 0px;
 
 }
 
@@ -1851,11 +1851,15 @@ div[data-role="editor-toolbar"] {
 }
 
 #map {
-  height: 600px;
+  height: 700px;
 }
 
 
 #toggle-search {
   margin-top: 5px;
   margin-left: 0px;
+}
+#result-alert {
+  padding-bottom: 2px;
+  padding-top: 2px;
 }

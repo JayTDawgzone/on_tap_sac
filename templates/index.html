@@ -1,177 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Find Beers on Tap in Sacramento">
+    <meta name="author" content="Terra Lynn Thompson">
+    <meta name="keyword" content="Sacramento, Beer, Breweries, Craft Beer, Code4Sac, Draft, Draught, Tap, Keg">
+    <link rel="shortcut icon" href="static/img/favicon.png">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Find Beers on Tap in Sacramento">
-  <meta name="author" content="Terra Lynn Thompson">
-  <meta name="keyword" content="Sacramento, Beer, Breweries, Craft Beer, Code4Sac, Draft, Draught, Tap, Keg">
-  <link rel="shortcut icon" href="static/img/favicon.png">
+    <title>Sacramento On Tap</title>
 
-  <title>Sacramento On Tap</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- bootstrap theme -->
+    <link href="static/css/bootstrap-theme.css" rel="stylesheet">
+    <!-- font icon -->
+    <link href="static/css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="static/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Custom styles -->
+    <link href="static/css/style.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/4b712ca7bb.js" crossorigin="anonymous"></script>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+  </head>
+  <body>
+<section id='container' class="">
+  <header class="header dark-bg">
+    <div class="nav">
+    </div>
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <!-- bootstrap theme -->
-  <link href="static/css/bootstrap-theme.css" rel="stylesheet">
-  <!-- font icon -->
-  <link href="static/css/elegant-icons-style.css" rel="stylesheet" />
-  <link href="static/css/font-awesome.min.css" rel="stylesheet" />
-  <!-- Custom styles -->
-  <link href="static/css/style.css" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/4b712ca7bb.js" crossorigin="anonymous"></script>
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-  crossorigin=""/>
-</head>
+    <!--logo start-->
+    <a href="index.html" class="logo">SAC <span class="lite">on Tap</span></a>
+    <!--logo end-->
 
-<body>
-  <!-- container section start -->
-  <section id="container" class="">
-
-
-    <header class="header dark-bg">
-      <div class="toggle-nav">
-        <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
-      </div>
-
-      <!--logo start-->
-      <a href="index.html" class="logo">SAC <span class="lite">on Tap</span></a>
-      <!--logo end-->
-
-    </header>
-
-    <!--sidebar start-->
-    <aside>
-      <div id="sidebar" class="nav-collapse ">
-        <!-- sidebar menu start-->
-        <ul class="sidebar-menu">
-          <li class="active">
-            <a class="" href="index.html">
-                          <i class="fas fa-home"></i>
-                          <span>Dashboard</span>
-                      </a>
-          </li>
-          <li class="sub">
-            <a href="javascript:;" class="">
-                          <i class="fas fa-map-marker-alt"></i>
-                          <span>Locations</span>
-                          <span class="menu-arrow arrow_carrot-right"></span>
-                      </a>
-          </li>
-          <li class="sub">
-            <a href="javascript:;" class="">
-                          <i class="fas fa-beer"></i>
-                          <span>Taps</span>
-                          <span class="menu-arrow arrow_carrot-right"></span>
-                      </a>
-          </li>
+  </header>
+  <section id='main-content'>
+    <section class='wrapper'>
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-xs-12">
 
 
-        </ul>
-        <!-- sidebar menu end-->
-      </div>
-    </aside>
-    <!--sidebar end-->
 
-    <!--main content start-->
-    <section id="main-content">
-      <section class="wrapper">
-        <!--overview start-->
-
-        <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <div class="info-box blue-bg">
-              <i class="fas fa-beer"></i>
-              <div class="count">3,000</div>
-              <div class="title">Unique Beers</div>
-            </div>
-            <!--/.info-box-->
-          </div>
-          <!--/.col-->
-
-          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <div class="info-box brown-bg">
-              <i class="fas fa-store-alt"></i>
-              <div class="count">1,500</div>
-              <div class="title">Bars & Restaurants</div>
-            </div>
-            <!--/.info-box-->
-          </div>
-          <!--/.col-->
-
-          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <div class="info-box lime-bg">
-              <i class="fab fa-untappd"></i>
-              <div class="">Pale Ale</div>
-              <div class="title">Most Popular Beer</div>
-            </div>
-            <!--/.info-box-->
-          </div>
-          <!--/.col-->
-
-          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <div class="info-box green-bg">
-              <i class="fas fa-industry"></i>
-              <div class="">Sierra Nevada</div>
-              <div class="title">Most Popular Brewery</div>
-            </div>
-            <!--/.info-box-->
-          </div>
-          <!--/.col-->
-
-        </div>
-        <!--/.row-->
-
-
-        <div class="row">
-          <div class="col-lg-9 col-md-12">
-
-            <div id='map'></div>
-
-            </div>
-          <div class="col-lg-3 col-md-12">
             <div class="row">
+              <div class="col-lg-3 col-xl-3 col-md-3">
+
+                <div class="row">
+
+
               <form class="navbar-form">
                 <input id='searchbar' class="form-control" placeholder="Search" type="text">
               </form>
-              <button id='searchbtn' type="button" class="btn btn-primary">Search</button>
-            </div>
-            <div class="row" id='toggle-search'>
+              <button id='searchbtn' type="button" class="btn active btn-info">Search</button>
+              </div>
+              </div>
+              <div class="col-lg-3 col-xl-3 col-md-3">
+
+
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-secondary active btn-info">
-                  <input type="radio" name="options" id="option1" checked> Brewery
+                  <input type="radio" name="options" id="option1" checked> Brands
                 </label>
                 <label class="btn btn-secondary btn-info">
-                  <input type="radio" name="options" id="option2"> Brand
+                  <input type="radio" name="options" id="option2"> Locations
                 </label>
+              </div>
+              </div>
+              <div class="col-lg-6 col-xl-6 col-md-6">
+                <div id='result-alert'class="alert alert-info" role="alert">Showing <span id='marker-count'></span> Results containing "<strong ><span id='search'></span></strong>" </div>
+
               </div>
             </div>
 
+          <div class="row" id='map'>
           </div>
-          </div>
-
-
         </div>
+        <div id='about' class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
+          <div class="container">
 
-      </section>
+
+          <div class="row">
+            <h1>Bob Loblaw's Law Blog</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
+          <div class="row">
+            <div class="card" style="width: 30rem; position: relative;">
+              <div class="card-header">
+                Summary
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><i class="fas fa-beer"></i> Unique Beers: <span class="" id='unique-beers'></span></li>
+                <li class="list-group-item"><i class="fas fa-store-alt"></i> Unique Locations: <span class="" id='unique-bars'></span></li>
+                <li class="list-group-item"><i class="fab fa-untappd"></i> Most Popular Beer: <span class="" id='popular-beer'></span></li>
+                <li class="list-group-item"><i class="far fa-clock"></i> Last Updated: <span class="" id='last-updated'></span></li>
+              </ul>
+            </div>
+          </div>
+          </div>
+        </div>
     </section>
-    <!--main content end-->
   </section>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.7/d3.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
   crossorigin=""></script>
   <script src="static/js/map.js"></script>
-
-
-
-
-</body>
-
+  <script src="static/js/index.js"></script>
 </html>
