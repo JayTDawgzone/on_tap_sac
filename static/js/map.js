@@ -64,6 +64,8 @@ let mapController = (function() {
         let search = searchbar.property('value');
         let option = displayRadioValue();
         let layer;
+        
+
         if (option === 'brands') {
           d3.json(`http://127.0.0.1:5000/api/taps/${search}`).then(function(result,error) {
             mymap.removeLayer(layerGroup)
