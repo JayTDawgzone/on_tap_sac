@@ -35,6 +35,14 @@ let mapController = (function() {
     return checked
   }
 
+  function clearDropdown() {
+    let body = d3.select('body')
+    let removeDropdown = body.select('#drop-container');
+    if (removeDropdown) {
+      removeDropdown.remove();
+    }
+  }
+
   return {
     createMap: function (layerGroup) {
       // Initialize Map
@@ -56,6 +64,32 @@ let mapController = (function() {
       }
 
       let searchbar = d3.select('#searchbar')
+      searchbar.on('keypress', function() {
+
+        if (searchbar.property('value').length > 3) {
+          let search = searchbar.property('value');
+          let option = displayRadioValue();
+          clearDropdown();
+          if (option === 'brands') {
+            d3.json(`http://127.0.0.1:5000/api/taps/${search}`).then(function(result,error) {
+
+              let taps = result.map(d => d.tap);
+
+
+
+              let dropContainer = d3.select('.searchbar-row').append('div').attr('id', 'drop-container');
+              let dropdown = dropContainer
+              .data(result)
+              .append('div')
+              .classed('dropdown', true)
+              .text(d => d.tap)
+              .enter();
+
+
+            })
+          }
+        }
+      })
       let lcontrol = L.control.layers(baseMaps,overlayMaps).addTo(mymap)
       // let option1 = document.getElementbyID('option1')
       // let option2 = document.getElementbyID('option2')
@@ -64,7 +98,7 @@ let mapController = (function() {
         let search = searchbar.property('value');
         let option = displayRadioValue();
         let layer;
-        
+
 
         if (option === 'brands') {
           d3.json(`http://127.0.0.1:5000/api/taps/${search}`).then(function(result,error) {
@@ -172,6 +206,8 @@ let controller = (function(mapCtrl) {
       let layer = mapCtrl.createMarkers(result)
       mapCtrl.createMap(layer)
       d3.select('#search').text(query)
+
+
 
 
 

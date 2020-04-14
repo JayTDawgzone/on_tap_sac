@@ -15,4 +15,6 @@ d3.json('http://127.0.0.1:5000/api/totals').then(function(result,error) {
   d3.select('#popular-beer').text(popularTap);
   d3.select('#popular-brewery').text(popularBrewery);
   d3.select('#last-updated').text(lastUpdated);
+
+
 })
