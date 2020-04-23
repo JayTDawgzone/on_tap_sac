@@ -35,9 +35,10 @@ let mapController = (function () {
     return checked
   }
 
+  // Clear autocomplete dropdown
   function clearDropdown() {
     let body = d3.select('body')
-    let removeDropdown = body.select('#drop-container');
+    let removeDropdown = body.select('#tap-autocomplete-list');
     if (removeDropdown) {
       removeDropdown.remove();
     }
@@ -77,28 +78,56 @@ let mapController = (function () {
         if (searchbar.property('value').length > 3) {
           let search = searchbar.property('value');
           let option = displayRadioValue();
-          clearDropdown();
+
+          // Brand autocomplete search
           if (option === 'brands') {
             d3.json(`http://127.0.0.1:5000/api/taps/${search}`).then(function (result, error) {
 
-              clearDropdown();
-              
+              clearDropdown()
+
               // Array of found taps
               let taps = result.map(d => d.tap);
 
               // Continer for holding the auto-complete results
               let dropContainer = d3.select('.auto-complete').append('datalist').attr('id', 'tap-autocomplete-list');
-              
+
               // Loop through taps and populate auto-complete list
               for (x in taps) {
                 let dropdown = dropContainer
-                .data(taps)
-                .append('option')
-                .text(taps[x]);
+                  .data(taps)
+                  .append('option')
+                  .text(taps[x]);
               };
 
             })
           }
+
+          // Restaurant autocomplete search
+          if (option === 'locations') {
+            d3.json(`http://127.0.0.1:5000/api/accounts_query/${search}`).then(function (result, error) {
+              console.log(result)
+
+              clearDropdown()
+
+              // Array of found taps
+              let locations = result.map(d => d.location);
+
+            
+
+              // Continer for holding the auto-complete results
+              let dropContainer = d3.select('.auto-complete').append('datalist').attr('id', 'tap-autocomplete-list');
+
+              // Loop through taps and populate auto-complete list
+              for (x in locations) {
+                let dropdown = dropContainer
+                  .data(locations)
+                  .append('option')
+                  .text(locations[x]);
+              };
+
+            })
+          }
+
         }
       })
       // let lcontrol = L.control.layers(baseMaps,overlayMaps).addTo(mymap)
