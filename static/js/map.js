@@ -81,18 +81,21 @@ let mapController = (function () {
           if (option === 'brands') {
             d3.json(`http://127.0.0.1:5000/api/taps/${search}`).then(function (result, error) {
 
+              clearDropdown();
+              
+              // Array of found taps
               let taps = result.map(d => d.tap);
 
-
-
-              let dropContainer = d3.select('.auto-complete').append('div').attr('id', 'drop-container');
-              let dropdown = dropContainer
-                .data(result)
-                .append('div')
-                .classed('dropdown', true)
-                .text(d => d.tap)
-                .enter();
-
+              // Continer for holding the auto-complete results
+              let dropContainer = d3.select('.auto-complete').append('datalist').attr('id', 'tap-autocomplete-list');
+              
+              // Loop through taps and populate auto-complete list
+              for (x in taps) {
+                let dropdown = dropContainer
+                .data(taps)
+                .append('option')
+                .text(taps[x]);
+              };
 
             })
           }
