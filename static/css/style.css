@@ -1,10 +1,43 @@
+#map-secion .col-md-6, .col-sm-12 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+
+/* Map */
+
 #map {
   height: 600px;
   width:100%;
 }
 
+
+/* Search area */
+.search-area {
+  padding: 5%;
+}
+
+
+/* Search bar filters */
+
+.search-filter-row {
+  margin-bottom: 0.5%;
+}
+
+
+/* Search Bar */
+
+.search-bar .col-sm-9 {
+  padding-right: 0;
+}
+
+.search-bar .col-sm-3 {
+  padding-left: 0.5%;
+}
+
 #searchbtn {
   position: relative;
+  width: 100%;
 }
 
 .drop-container {
@@ -17,3 +50,5 @@
   width: 100%;
   z-index: 2;
 }
+
+

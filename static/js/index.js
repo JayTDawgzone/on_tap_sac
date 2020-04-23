@@ -18,3 +18,16 @@ d3.json('http://127.0.0.1:5000/api/totals').then(function(result,error) {
 
 
 })
+
+// Resize map to 100%
+$(window).on("resize", function () { $("#map").height($(window).height()); }).trigger("resize");
+
+// Submit search when enter is pressed
+$('#searchbar').keypress(function(event){
+  var keycode = (event.keyCode ? event.keyCode : event.which);
+  if(keycode == '13'){
+     $(this).parent().parent().find('button').click();
+  }
+});
+
+
