@@ -1,5 +1,6 @@
 body {
   font-family: 'Montserrat', sans-serif;
+  overflow-y: hidden;
 }
 
 
@@ -45,6 +46,10 @@ body {
 
 
 /* Search Bar */
+
+.search-bar {
+  margin: 0% 1%;
+}
 
 .search-bar .col-sm-9 {
   padding-right: 0;
