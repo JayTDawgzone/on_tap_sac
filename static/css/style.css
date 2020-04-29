@@ -1,20 +1,35 @@
-#map-secion .col-md-6, .col-sm-12 {
+/* #map-secion .col-md-6, .col-sm-12 {
   padding-left: 0;
   padding-right: 0;
-}
+} */
 
 
 /* Map */
 
 #map {
-  height: 600px;
+  height: 100vh;
   width:100%;
+}
+
+.map-column {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+
+/* Map Popups */
+
+.leaflet-popup-content-wrapper .popup-location{
+  line-height: 1;
 }
 
 
 /* Search area */
-.search-area {
-  padding: 5%;
+
+.search-column {
+  padding-left: 0;
+  padding: 3%;
+  background-color: rgba(0, 0, 0, 0.644);
 }
 
 
@@ -49,6 +64,13 @@
   height: 50px;
   width: 100%;
   z-index: 2;
+}
+
+
+/* Results area */
+
+.results-row {
+  color: white;
 }
 
 

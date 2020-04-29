@@ -1,25 +1,23 @@
 let mapController = (function () {
 
   function createTapList(taplist) {
-
     // Creates Tap List String for Pop Ups
     let string = ''
     if (taplist[0].constructor == Object) {
       for (const property in taplist) {
         string = string + `<li>${Object.values(taplist[property])}</li>`
-        console.log(Object.values(taplist[property]))
       }
     } else {
       for (let i = 0; i < taplist.length; i++) {
-
         string = string + `<li>${taplist[i]}</li>`
       }
     }
-
     return string
   }
 
   function displayRadioValue() {
+    // Check filter buttons
+
     var ele = document.getElementsByName('options');
     let checked;
     for (let x = 0; x < ele.length; x++) {
@@ -35,8 +33,9 @@ let mapController = (function () {
     return checked
   }
 
-  // Clear autocomplete dropdown
+  
   function clearDropdown() {
+    // Clear autocomplete dropdown
     let body = d3.select('body')
     let removeDropdown = body.select('#tap-autocomplete-list');
     if (removeDropdown) {
@@ -46,11 +45,12 @@ let mapController = (function () {
 
   return {
     createMap: function (layerGroup) {
+
       // Initialize Map
       let baseMap = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         attribution: 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 20,
-        id: 'mapbox/streets-v11',
+        id: 'mapbox/dark-v10',
         accessToken: 'pk.eyJ1IjoiY29zdGNvLWhvdGRvZyIsImEiOiJjazYxajkyNGUwNDljM2xvZnZjZmxmcjJqIn0.zW5wSAD1e2DKZIjtlAwNtQ'
       })
       let mymap = L.map('map', {
@@ -72,6 +72,7 @@ let mapController = (function () {
         "Locations": layerGroup
       }
 
+      // Search bar auto-complete
       let searchbar = d3.select('#searchbar')
       searchbar.on('keypress', function () {
 
@@ -83,6 +84,7 @@ let mapController = (function () {
           if (option === 'brands') {
             d3.json(`http://127.0.0.1:5000/api/taps/${search}`).then(function (result, error) {
 
+              // Clear previous results
               clearDropdown()
 
               // Array of found taps
@@ -107,12 +109,11 @@ let mapController = (function () {
             d3.json(`http://127.0.0.1:5000/api/accounts_query/${search}`).then(function (result, error) {
               console.log(result)
 
+              // Clear previous results
               clearDropdown()
 
               // Array of found taps
               let locations = result.map(d => d.location);
-
-            
 
               // Continer for holding the auto-complete results
               let dropContainer = d3.select('.auto-complete').append('datalist').attr('id', 'tap-autocomplete-list');
@@ -124,21 +125,16 @@ let mapController = (function () {
                   .append('option')
                   .text(locations[x]);
               };
-
             })
           }
-
         }
       })
-      // let lcontrol = L.control.layers(baseMaps,overlayMaps).addTo(mymap)
-      // let option1 = document.getElementbyID('option1')
-      // let option2 = document.getElementbyID('option2')
-      let layer;
+      
+      // Apply markers to map based on search
       d3.select('#searchbtn').on('click', function (d) {
         let search = searchbar.property('value');
         let option = displayRadioValue();
         let layer;
-
 
         if (option === 'brands') {
           d3.json(`http://127.0.0.1:5000/api/taps/${search}`).then(function (result, error) {
@@ -162,15 +158,11 @@ let mapController = (function () {
             mymap.addLayer(layer);
           })
         }
-
-
-
       })
-      // leaflet-pane leaflet-shadow-pane
-      // leaflet-pane leaflet-marker-pane
-      // leaflet-pane leaflet-tooltip-pane
     },
+
     createAccountMarkers: function (result) {
+      // Create account markers for map
       let markers = [];
       let obj;
       result.map(function (d) {
@@ -191,9 +183,10 @@ let mapController = (function () {
       var markerGroup = L.layerGroup(layerGroup);
       return markerGroup
     },
+
     createMarkers: function (result) {
       // Create Markers for the map
-      //Dictionary containing locations
+      // Dictionary containing locations
       let markers = [];
       let obj;
       result.map(function (d) {
@@ -226,7 +219,7 @@ let mapController = (function () {
       let layer;
       for (var i = 0; i < markers.length; i++) {
         var marker = markers[i];
-        layer = L.marker(marker.coordinates).bindPopup(`<p> ${marker.name} </p><p>Brands:</p> ${createTapList(marker.tap)}`);
+        layer = L.marker(marker.coordinates).bindPopup(`<h5 class="popup-location"> ${marker.name} </h3><p>${createTapList(marker.tap)}</p>`);
         layerGroup.push(layer);
       };
       var markerGroup = L.layerGroup(layerGroup);
@@ -246,10 +239,6 @@ let controller = (function (mapCtrl) {
         let layer = mapCtrl.createMarkers(result)
         mapCtrl.createMap(layer)
         d3.select('#search').text(query)
-
-
-
-
 
       });
     }

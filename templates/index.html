@@ -53,93 +53,80 @@
 
 
   <div class="container-fluid">
+    <div class="row">
 
-    <section id="map-section">
-      <div class="row">
+      <!-- Map -->
 
-
-        <!-- Map -->
-
-        <div class="col-md-6 col-sm-12">
-          <div id='map'></div>
-        </div>
-
-
-        <!-- Search Area -->
-
-        <div class="col-md-6 search-area">
-
-
-          <!-- Search Filter Buttons -->
-
-          <div class="row search-filter-row">
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-              <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-primary">
-                  <input type="radio" name="options" id="option1" autocomplete="off" checked=""> Brands
-                </label>
-                <label class="btn btn-primary">
-                  <input type="radio" name="options" id="option2" autocomplete="off"> Restaurants
-                </label>
-              </div>
-            </div>
-          </div>
-
-
-          <!-- Search Bar -->
-
-          <div class="row search-bar">
-            <div class="col-sm-9">
-              <input class="form-control mr-sm-2" type="text" placeholder="Search" id='searchbar' list="tap-autocomplete-list">
-            </div>
-            <div class="col-sm-3">
-              <button class="btn btn-secondary my-2 my-sm-0" type="submit" id='searchbtn'
-                onsubmit="return false">Search</button>
-            </div>
-          </div>
-          <div class="row auto-complete"></div>
-
-
-
-          <!-- Toggle Buttons -->
-
-
-          <div class="row">
-            <h1>Results</h1>
-            <ul>
-              <li>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident minima alias voluptates, itaque
-                  magnam est, quam qui sed voluptatum veniam, laborum voluptas repellat non iste exercitationem
-                  voluptatem
-                  officia debitis quos.</p>
-              </li>
-              <li>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident minima alias voluptates, itaque
-                  magnam est, quam qui sed voluptatum veniam, laborum voluptas repellat non iste exercitationem
-                  voluptatem
-                  officia debitis quos.</p>
-              </li>
-              <li>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident minima alias voluptates, itaque
-                  magnam est, quam qui sed voluptatum veniam, laborum voluptas repellat non iste exercitationem
-                  voluptatem
-                  officia debitis quos.</p>
-              </li>
-              <li>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident minima alias voluptates, itaque
-                  magnam est, quam qui sed voluptatum veniam, laborum voluptas repellat non iste exercitationem
-                  voluptatem
-                  officia debitis quos.</p>
-              </li>
-            </ul>
-
-
-          </div>
-        </div>
+      <div class="map-column col-md-6 col-sm-12">
+        <div id='map'></div>
       </div>
 
-  </div>
-  </section>
+      <!-- Search Area -->
+
+      <div class="search-column col-md-6">
+
+        <!-- Search Filter Buttons -->
+
+        <div class="row search-filter-row">
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-primary">
+                <input type="radio" name="options" id="option1" autocomplete="off" checked=""> Brands
+              </label>
+              <label class="btn btn-primary">
+                <input type="radio" name="options" id="option2" autocomplete="off"> Restaurants
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search Bar -->
+
+        <div class="row search-bar">
+          <div class="col-sm-9">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" id='searchbar'
+              list="tap-autocomplete-list">
+          </div>
+          <div class="col-sm-3">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit" id='searchbtn'
+              onsubmit="return false">Search</button>
+          </div>
+        </div>
+        <div class="row auto-complete"></div>
+
+        <!-- Results -->
+
+        <div class="results-row row">
+          <h1>Results</h1>
+          <ul>
+            <li>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident minima alias voluptates, itaque
+                magnam est, quam qui sed voluptatum veniam, laborum voluptas repellat non iste exercitationem
+                voluptatem
+                officia debitis quos.</p>
+            </li>
+            <li>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident minima alias voluptates, itaque
+                magnam est, quam qui sed voluptatum veniam, laborum voluptas repellat non iste exercitationem
+                voluptatem
+                officia debitis quos.</p>
+            </li>
+            <li>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident minima alias voluptates, itaque
+                magnam est, quam qui sed voluptatum veniam, laborum voluptas repellat non iste exercitationem
+                voluptatem
+                officia debitis quos.</p>
+            </li>
+            <li>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident minima alias voluptates, itaque
+                magnam est, quam qui sed voluptatum veniam, laborum voluptas repellat non iste exercitationem
+                voluptatem
+                officia debitis quos.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- search bar -->
