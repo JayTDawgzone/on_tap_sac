@@ -1,7 +1,6 @@
-/* #map-secion .col-md-6, .col-sm-12 {
-  padding-left: 0;
-  padding-right: 0;
-} */
+body {
+  font-family: 'Montserrat', sans-serif;
+}
 
 
 /* Map */
@@ -19,8 +18,12 @@
 
 /* Map Popups */
 
-.leaflet-popup-content-wrapper .popup-location{
-  line-height: 1;
+.leaflet-container {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.leaflet-container .popup-location-name {
+  font-weight: 800 !important;
 }
 
 
@@ -28,15 +31,16 @@
 
 .search-column {
   padding-left: 0;
-  padding: 3%;
+  padding-right: 0;
   background-color: rgba(0, 0, 0, 0.644);
+  border-radius: 0;
 }
 
 
 /* Search bar filters */
 
-.search-filter-row {
-  margin-bottom: 0.5%;
+.search-filter {
+  margin: 2% 1%;
 }
 
 

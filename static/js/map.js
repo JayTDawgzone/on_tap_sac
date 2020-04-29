@@ -33,7 +33,7 @@ let mapController = (function () {
     return checked
   }
 
-  
+
   function clearDropdown() {
     // Clear autocomplete dropdown
     let body = d3.select('body')
@@ -129,7 +129,7 @@ let mapController = (function () {
           }
         }
       })
-      
+
       // Apply markers to map based on search
       d3.select('#searchbtn').on('click', function (d) {
         let search = searchbar.property('value');
@@ -177,7 +177,7 @@ let mapController = (function () {
       let layer;
       for (var i = 0; i < markers.length; i++) {
         var marker = markers[i];
-        layer = L.marker(marker.coordinates).bindPopup(`<p> ${marker.location} </p><p>Brands:</p> ${createTapList(marker.taps)}`);
+        layer = L.marker(marker.coordinates).bindPopup(`<h5 class="popup-location-name"> ${marker.location}</h5>${createTapList(marker.taps)}`);
         layerGroup.push(layer);
       };
       var markerGroup = L.layerGroup(layerGroup);
@@ -219,7 +219,7 @@ let mapController = (function () {
       let layer;
       for (var i = 0; i < markers.length; i++) {
         var marker = markers[i];
-        layer = L.marker(marker.coordinates).bindPopup(`<h5 class="popup-location"> ${marker.name} </h3><p>${createTapList(marker.tap)}</p>`);
+        layer = L.marker(marker.coordinates).bindPopup(`<h5 class="popup-location-name">${marker.name}</h5>${createTapList(marker.tap)}`);
         layerGroup.push(layer);
       };
       var markerGroup = L.layerGroup(layerGroup);
