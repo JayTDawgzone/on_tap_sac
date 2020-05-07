@@ -55,7 +55,7 @@ body {
 }
 
 
-/* Search bar filters */
+/* Search bar filter buttons */
 
 .search-filter {
   margin: 2% 1%;
@@ -69,7 +69,7 @@ body {
   background-color: #e26426;
 }
 
-.btn-primary:hover {
+.btn-primary:hover, .btn-primary:not(:disabled):not(.disabled):active {
   background-color: #cfae29;
 }
 
@@ -90,6 +90,18 @@ body {
 #searchbtn {
   position: relative;
   width: 100%;
+}
+
+.btn-secondary, .btn-secondary:focus {
+  background-color: #ffd534;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active {
+  background-color: #c5a525;
+}
+
+.btn-secondary:hover {
+  background-color: #cfae29;
 }
 
 .drop-container {
