@@ -33,7 +33,7 @@ body {
 /* Search area */
 
 .search-area-background {
-  height: 95%;
+  height: 14%;
   width: 40%;
   background: #008001;
   position: absolute;
@@ -41,7 +41,7 @@ body {
   left: 60%;
   z-index: 2;
   opacity: 50%;
-  border-radius: 2% 0% 0% 2%;
+  border-radius: 10% 0% 0% 10%;
 }
 
 .search-area {
@@ -53,7 +53,6 @@ body {
   z-index: 3;
   border-radius: 2% 0% 0% 2%;
 }
-
 
 /* Search bar filter buttons */
 
