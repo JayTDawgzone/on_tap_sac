@@ -10,41 +10,68 @@ body {
 #map {
   height: 100vh;
   width:100%;
+  position: relative;
+  z-index: 1;
 }
 
-.map-column {
+/* .map-column {
   padding-left: 0;
   padding-right: 0;
-}
+} */
 
 
 /* Map Popups */
 
 .leaflet-container {
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .leaflet-container .popup-location-name {
-  font-weight: 800 !important;
+  font-weight: 800;
 }
 
 
 /* Search area */
 
-.search-column {
-  padding-left: 0;
-  padding-right: 0;
-  background-color: rgba(0, 0, 0, 0.644);
-  border-radius: 0;
+.search-area-background {
+  height: 14%;
+  width: 40%;
+  background: #008001;
+  position: absolute;
+  top: 2.5%;
+  left: 60%;
+  z-index: 2;
+  opacity: 50%;
+  /* border-radius: 15% 0% 0% 15%; */
 }
 
+.search-area {
+  height: 95%;
+  width: 40%;
+  position: absolute;
+  top: 2.5%;
+  left: 60%;
+  z-index: 3;
+  border-radius: 2% 0% 0% 2%;
+}
 
-/* Search bar filters */
+/* Search bar filter buttons */
 
 .search-filter {
   margin: 2% 1%;
 }
 
+.btn-primary {
+  background-color: #986026;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active {
+  background-color: #e26426;
+}
+
+.btn-primary:hover, .btn-primary:not(:disabled):not(.disabled):active {
+  background-color: #cfae29;
+}
 
 /* Search Bar */
 
@@ -63,6 +90,18 @@ body {
 #searchbtn {
   position: relative;
   width: 100%;
+}
+
+.btn-secondary, .btn-secondary:focus {
+  background-color: #ffd534;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active {
+  background-color: #c5a525;
+}
+
+.btn-secondary:hover {
+  background-color: #cfae29;
 }
 
 .drop-container {

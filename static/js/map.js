@@ -50,7 +50,7 @@ let mapController = (function () {
       let baseMap = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         attribution: 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 20,
-        id: 'mapbox/dark-v10',
+        id: 'mapbox/outdoors-v11',
         accessToken: 'pk.eyJ1IjoiY29zdGNvLWhvdGRvZyIsImEiOiJjazYxajkyNGUwNDljM2xvZnZjZmxmcjJqIn0.zW5wSAD1e2DKZIjtlAwNtQ'
       })
       let mymap = L.map('map', {
