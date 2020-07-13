@@ -145,6 +145,8 @@ let mapController = (function () {
             layer = mapController.createMarkers(result);
             mymap.addLayer(baseMap);
             mymap.addLayer(layer);
+            mapController.createResultsList(result);
+
           })
         } else {
           // search for accounts
@@ -156,6 +158,7 @@ let mapController = (function () {
             layer = mapController.createAccountMarkers(result);
             mymap.addLayer(baseMap);
             mymap.addLayer(layer);
+            mapController.createResultsList(result);
           })
         }
       })
@@ -183,6 +186,7 @@ let mapController = (function () {
       var markerGroup = L.layerGroup(layerGroup);
       return markerGroup
     },
+
 
     createMarkers: function (result) {
       // Create Markers for the map
