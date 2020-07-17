@@ -50,7 +50,7 @@ let mapController = (function () {
       let baseMap = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         attribution: 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 20,
-        id: 'mapbox/outdoors-v11',
+        id: 'mapbox/dark-v10',
         accessToken: 'pk.eyJ1IjoiY29zdGNvLWhvdGRvZyIsImEiOiJjazYxajkyNGUwNDljM2xvZnZjZmxmcjJqIn0.zW5wSAD1e2DKZIjtlAwNtQ'
       })
       let mymap = L.map('map', {
@@ -82,7 +82,7 @@ let mapController = (function () {
 
           // Brand autocomplete search
           if (option === 'brands') {
-            d3.json(`http://127.0.0.1:5000/api/taps/${search}`).then(function (result, error) {
+            d3.json(`https://sacontap.wn.r.appspot.com/api/taps/${search}`).then(function (result, error) {
 
               // Clear previous results
               clearDropdown()
@@ -106,8 +106,7 @@ let mapController = (function () {
 
           // Restaurant autocomplete search
           if (option === 'locations') {
-            d3.json(`http://127.0.0.1:5000/api/accounts_query/${search}`).then(function (result, error) {
-              console.log(result)
+            d3.json(`https://sacontap.wn.r.appspot.com/api/accounts_query/${search}`).then(function (result, error) {
 
               // Clear previous results
               clearDropdown()
@@ -137,25 +136,24 @@ let mapController = (function () {
         let layer;
 
         if (option === 'brands') {
-          d3.json(`http://127.0.0.1:5000/api/taps/${search}`).then(function (result, error) {
+          d3.json(`https://sacontap.wn.r.appspot.com/api/taps/${search}`).then(function (result, error) {
             mymap.removeLayer(layerGroup)
             mymap.eachLayer(d => {
               mymap.removeLayer(d)
             })
-            layer = mapController.createMarkers(result);
+            layer = mapController.createMarkers(result,search);
             mymap.addLayer(baseMap);
             mymap.addLayer(layer);
-            mapController.createResultsList(result);
 
           })
         } else {
           // search for accounts
-          d3.json(`http://127.0.0.1:5000/api/accounts_query/${search}`).then(function (result, error) {
+          d3.json(`https://sacontap.wn.r.appspot.com/api/accounts_query/${search}`).then(function (result, error) {
             mymap.removeLayer(layerGroup)
             mymap.eachLayer(d => {
               mymap.removeLayer(d);
             })
-            layer = mapController.createAccountMarkers(result);
+            layer = mapController.createAccountMarkers(result,search);
             mymap.addLayer(baseMap);
             mymap.addLayer(layer);
             mapController.createResultsList(result);
@@ -164,7 +162,7 @@ let mapController = (function () {
       })
     },
 
-    createAccountMarkers: function (result) {
+    createAccountMarkers: function (result,query) {
       // Create account markers for map
       let markers = [];
       let obj;
@@ -184,26 +182,39 @@ let mapController = (function () {
         layerGroup.push(layer);
       };
       var markerGroup = L.layerGroup(layerGroup);
+      let number = markers.length;
+      let popup = d3.select('#alert')
+      popup.text(`Showing ${number} results for '${query}'`)
+
       return markerGroup
     },
 
 
-    createMarkers: function (result) {
+    createMarkers: function (result,query) {
       // Create Markers for the map
       // Dictionary containing locations
       let markers = [];
       let obj;
+
+
       result.map(function (d) {
 
         for (var z = 0; z < d.locations.length; z++) {
           obj = {
             coordinates: [d.locations[z].lat, d.locations[z].lng],
             name: d.locations[z].location,
+            address: d.locations[z].address,
+            city: d.locations[z].city,
+            zipcode: d.locations[z].zipcode,
             tap: []
           }
           markers.push(obj)
         }
+
       });
+      let number = markers.length;
+      let popup = d3.select('#alert')
+      popup.text(`Showing ${number} results for '${query}'`)
       // Push all taps associated with account to Markers List
       let location;
       result.map(function (d) {
@@ -223,7 +234,7 @@ let mapController = (function () {
       let layer;
       for (var i = 0; i < markers.length; i++) {
         var marker = markers[i];
-        layer = L.marker(marker.coordinates).bindPopup(`<h5 class="popup-location-name">${marker.name}</h5>${createTapList(marker.tap)}`);
+        layer = L.marker(marker.coordinates).bindPopup(`<h5 class="popup-location-name">${marker.name}</h5><h6>${marker.address}, ${marker.city} ${marker.zipcode}</h6>${createTapList(marker.tap)}`);
         layerGroup.push(layer);
       };
       var markerGroup = L.layerGroup(layerGroup);
@@ -239,10 +250,11 @@ let controller = (function (mapCtrl) {
   return {
 
     init: function () {
-      let data = d3.json(`http://127.0.0.1:5000/api/taps/${query}`).then(function (result, error) {
-        let layer = mapCtrl.createMarkers(result)
+      let data = d3.json(`https://sacontap.wn.r.appspot.com/api/taps/${query}`).then(function (result, error) {
+        let layer = mapCtrl.createMarkers(result,query)
         mapCtrl.createMap(layer)
         d3.select('#search').text(query)
+        $('.alert').alert()
 
       });
     }

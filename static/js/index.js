@@ -1,9 +1,8 @@
 
 
 // Updates Boxes at top of page with current tap counts, popular beer, etc.
-d3.json('http://127.0.0.1:5000/api/totals').then(function(result,error) {
+d3.json('https://sacontap.wn.r.appspot.com/api/totals').then(function(result,error) {
 
-  console.log(result);
   let popularTap = result.popular_tap;
   let popularBrewery = result.popular_brewery;
   let totalAccounts = result.total_accounts;
@@ -29,5 +28,3 @@ $('#searchbar').keypress(function(event){
      $(this).parent().parent().find('button').click();
   }
 });
-
-

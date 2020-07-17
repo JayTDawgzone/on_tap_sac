@@ -23,24 +23,22 @@
   <!-- Bootstrap theme -->
   <link rel="stylesheet" href="static/css/bootstrap.min.css">
 
+  <!-- Custom styles -->
+  <link href="static/css/style.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/4b712ca7bb.js" crossorigin="anonymous"></script>
+
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
     crossorigin="" />
 
-  <!-- Local CSS -->
-  <link href="static/css/style.css" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/4b712ca7bb.js" crossorigin="anonymous"></script>
-
   <!-- Google fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;800&display=swap" rel="stylesheet">
-  
 </head>
 
 
 <body>
 
-<<<<<<< HEAD
 
 
 
@@ -49,9 +47,7 @@
 
       <!-- Map -->
 
-      <div class="map-column col-md-6 col-sm-12">
-        <div id='map'></div>
-      </div>
+
 
       <!-- Search Area -->
 
@@ -67,9 +63,9 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav mr-auto">
-              <!-- <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-              </li> -->
+              <li class="nav-item creators">
+                <p>Created by <a href="https://jaytdawgzone.github.io/">Terra Thompson</a> & <a href="https://www.linkedin.com/in/john-loper/">John Loper</a></p>
+              </li>
             </ul>
           </div>
         </nav>
@@ -86,39 +82,29 @@
                 <input type="radio" name="options" id="option2" autocomplete="off"> Restaurants
               </label>
             </div>
-=======
-  <!-- Map -->
-
-  <section class="map">
-    <div id='map'></div>
-  </section>
-    
-  <!-- Search and results -->
-
-  <section class="search-area-background">
-  </section>
-
-  <section class="search-area">
-    <div class="container-flex">
-      <div class="row search-filter">
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-          <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-primary">
-              <input type="radio" name="options" id="option1" autocomplete="off" checked=""> Brands
-            </label>
-            <label class="btn btn-primary">
-              <input type="radio" name="options" id="option2" autocomplete="off"> Restaurants
-            </label>
->>>>>>> c74a670767530aa3cbca4969339c541e7b5b92d6
           </div>
         </div>
-      </div>
-      <div class="row search-bar">
-        <div class="col-sm-9">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" id='searchbar'
-            list="tap-autocomplete-list">
+
+        <!-- Search Bar -->
+
+        <div class="row search-bar">
+          <div class="col-sm-9">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" id='searchbar'
+              list="tap-autocomplete-list">
+          </div>
+          <div class="col-sm-3">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit" id='searchbtn'
+              onsubmit="return false">Search</button>
+          </div>
+          <div class="col-sm-9 alert alert-primary my-3 mr-sm-2" role="alert" id='alert'>
+
+          </div>
         </div>
-<<<<<<< HEAD
+        <div class="row pop-up">
+          <div class="col-9">
+
+          </div>
+        </div>
         <div class="row auto-complete"></div>
 
         <!-- About -->
@@ -128,7 +114,7 @@
             <div class="jumbotron jumbotron-fluid">
               <div class="container">
                 <h1 class="display-4">Find beers on tap in Sacramento!</h1>
-                <p class="lead">Search for a beer to find restaurants currently serving it, or search for a restaurant to see a list of all beers they are serv</p>
+                <p class="lead">Search for a beer to find restaurants currently serving it, or search for a restaurant to see a list of all beers they are serving.</p>
               </div>
             </div>
           </div>
@@ -146,65 +132,21 @@
           <div class="col-12">
             <div class="section">
             <h1>COVID-19</h1>
-            <p>Due to COVID-19, the company that collects the data for this application is no longer in opperation. Almost all of the bars in the Sacramento area of shut down completely or are no longer serving beer. Because of this, keeping this app updated is no longer possible.</p>
-            <p>We encourage you to support your local bars & restuarants when possible!</p>
+            <p>Due to COVID-19, the company that collects the data for this application is no longer in opperation. Almost all of the bars in the Sacramento area of shut down completely or are no longer serving beer. Because of this, keeping this app updated is no longer possible. We encourage you to support your local bars & restuarants!</p>
             </div>
           </div>
         </div>
 
 
-        <div class="creators">
-          <p>Created by <a href="https://jaytdawgzone.github.io/">Terra Thompson</a> & <a href="https://www.linkedin.com/in/john-loper/">John Loper</a></p>
-        </div>
 
+
+      </div>
+      <div class="map-column col-md-6 col-sm-12">
+        <div id='map'></div>
       </div>
     </div>
   </div>
 
-=======
-        <div class="col-sm-3">
-          <button class="btn btn-secondary my-2 my-sm-0" type="submit" id='searchbtn'
-            onsubmit="return false">Search</button>
-        </div>
-      </div>
-      <div class="row auto-complete"></div>
-    </div>
-  </section>
-
-  
-
-
-
-  <!-- search bar -->
-  <!-- <form class="form-row">
-                    <div class="col">
-                    <input type="text" class="form-control" placeholder="Search" id='searchbar'>
-                    </div>
-                    <div class="col">
-                      <button id='searchbtn' type="button" class="btn active btn-info">Search</button>
-                    </div>
-                  </form> -->
-
-
-
-
-
-  <!-- toggle buttons -->
-  <!-- <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-secondary active btn-info">
-                  <input type="radio" name="options" id="option1" checked> Brands
-                </label>
-                <label class="btn btn-secondary btn-info">
-                  <input type="radio" name="options" id="option2"> Locations
-                </label>
-              </div> -->
-
-
-
-
-  <!-- map -->
-  <!-- <div id='map'></div> -->
->>>>>>> c74a670767530aa3cbca4969339c541e7b5b92d6
 
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

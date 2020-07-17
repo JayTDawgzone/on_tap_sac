@@ -1,6 +1,5 @@
 body {
   font-family: 'Montserrat', sans-serif;
-  overflow-y: hidden;
   color: #fff;
 }
 
@@ -133,6 +132,28 @@ body {
 
 .creators {
   position:absolute;
-  bottom:0;
+  right:0;
   margin-left: 2rem;
+}
+
+a {
+  color: #008080;
+}
+
+.btn {
+  border-color: #000;
+}
+
+.btn-primary.active{
+  background-image: linear-gradient(#325D88, #325D88 60%, #325D88) !important;
+  background-color: #325D88 !important;
+}
+
+.btn-primary{
+  background-image: linear-gradient(#223f5c, #223f5c 60%, #223f5c) !important;
+  background-color: #223f5c !important;
+}
+
+.alert {
+  margin-left: 1rem;
 }
