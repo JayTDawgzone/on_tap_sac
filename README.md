@@ -1,6 +1,8 @@
 # sac_on_tap
 Find beers on tap in Sacramento!
 
+***View the live application here:*** https://sacontap.wn.r.appspot.com/
+
 ## Summary
 
 Sacramento On Tap lets you find beers on tap at over 1,500 local restaurants. You can either search by beer or by restaurant and the results will populate on an interactive map. However, due to COVID19 most bars and restaurants have closed and the data is no longer up-to-date.
